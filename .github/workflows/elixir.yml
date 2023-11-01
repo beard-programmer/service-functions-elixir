@@ -27,6 +27,12 @@ jobs:
       with:
         elixir-version: '1.15.2' # [Required] Define the Elixir version
         otp-version: '26.0'      # [Required] Define the Erlang/OTP version
+    - name: Restore dependencies cache
+      uses: actions/cache@v3
+      with:
+        path: deps
+        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+        restore-keys: ${{ runner.os }}-mix-
   # Cache key based on Erlang/Elixir version and the mix.lock hash
     - name: Restore PLT cache
       id: plt_cache
