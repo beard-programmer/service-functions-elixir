@@ -4,8 +4,9 @@
 ## Hello. This repo contains code in elixir original medium article about [service functions in ruby](https://medium.com/@beard-programmer/service-objects-as-functions-a-functional-approach-to-build-business-flows-in-ruby-on-rails-bf34bf18331d).
 
 ## Related projects
-- [Service functions in Ruby](https://github.com/beard-programmer/service-functions/tree/master/app/handle_errors/ok_error)
-- Same in [Golang](https://github.com/beard-programmer/service-functions-go)
+- Service functions in [Ruby](https://github.com/beard-programmer/service-functions) this is original source that was used in Medium article
+- Service functions in [Golang](https://github.com/beard-programmer/service-functions-go)
+- Service functions in [Elixir](https://github.com/beard-programmer/service-functions-elixir)
 
 ## Installation
 
