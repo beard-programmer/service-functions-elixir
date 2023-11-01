@@ -29,20 +29,17 @@ defmodule Payroll.LineItems do
       {:ok, %LineItemWithPolicy{amount: 200, line_item_key: "meal_voucher", tax_policy: "EXEMPT"}}
 
       iex> alias Payroll.LineItems.LineItem
-      iex> line_item = %LineItem{line_item_key: "unknown", amount: 100}
-      iex> {:error, _error_message} = Payroll.LineItems.build_line_item_with_policy(line_item)
+      iex> {:error, _error_message} = Payroll.LineItems.build_line_item_with_policy(%LineItem{line_item_key: "unknown", amount: 100})
 
       iex> alias Payroll.LineItems.LineItem
-      iex> line_item = %LineItem{line_item_key: "unknown", amount: nil}
-      iex> {:error, _error_message} = Payroll.LineItems.build_line_item_with_policy(line_item)
+      iex> {:error, _error_message} = Payroll.LineItems.build_line_item_with_policy(%LineItem{line_item_key: "unknown", amount: nil})
 
       iex> alias Payroll.LineItems.LineItem
-      iex> line_item = "not a line item at all"
-      iex> {:error, _error_message} = Payroll.LineItems.build_line_item_with_policy(line_item)
+      iex> {:error, _error_message} = Payroll.LineItems.build_line_item_with_policy("not a line item at all")
   """
   @spec build_line_item_with_policy(LineItem.t()) :: {:ok, LineItemWithPolicy.t()} | {:error, String.t()}
-  def build_line_item_with_policy(li) do
-    case li do
+  def build_line_item_with_policy(line_tem) do
+    case line_tem do
       %Payroll.LineItems.LineItem{line_item_key: "salary", amount: amount} when is_integer(amount) ->
         {:ok, %Payroll.LineItems.LineItemWithPolicy{amount: amount, line_item_key: "salary", tax_policy: "TAXABLE"}}
 
