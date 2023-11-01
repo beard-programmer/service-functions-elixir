@@ -36,11 +36,15 @@ defmodule Payroll.EmployeePayrolls do
       when is_integer(employee_id) do
     # calculate_taxes_fn = &Payroll.LineItems.calculate_taxes/1
 
+    # Step 1: receive line items
     {:ok, employee_payroll.line_items}
+    # Step 2: build line items with policy using Dependency
     |> process_collection(build_line_item_with_policy_fn)
+    # Step 3: calculate taxes for each line item using Dependency
     |> process_collection(calculate_taxes_fn)
     |> case do
       {:ok, list} ->
+        # Step 4: build CalculatedEmployeePayroll
         {total_amount, total_taxable, total_exempt} = aggregate_totals(list)
 
         {:ok,
